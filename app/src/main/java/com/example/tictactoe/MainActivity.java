@@ -13,10 +13,12 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView tv_player;
+    TextView tv_player,tv_res_p1,tv_res_p2;
     Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9;
     int player = 1;
     int buttonStates[];
+    static int p1=0,p2=0;
+    static int win;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +35,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn7 = findViewById(R.id.button7);
         btn8 = findViewById(R.id.button8);
         btn9 = findViewById(R.id.button9);
+        tv_res_p1 = findViewById(R.id.tv_res_p1);
+        tv_res_p2 = findViewById(R.id.tv_res_p2);
+
+        result();
 
         addListenerToButton();
 
         buttonStates=new int[]{0,0,0,0,0,0,0,0,0};
+
+    }
+
+    private void result() {
+
+        if(p1 > p2){
+            tv_res_p1.setTextColor(Color.parseColor("#00FF00"));
+            tv_res_p2.setTextColor(Color.parseColor("#ff0000"));
+            tv_res_p1.setText(p1+"");
+            tv_res_p2.setText(p2+"");
+        }else if(p1 < p2){
+            tv_res_p2.setTextColor(Color.parseColor("#00FF00"));
+            tv_res_p1.setTextColor(Color.parseColor("#ff0000"));
+            tv_res_p1.setText(p1+"");
+            tv_res_p2.setText(p2+"");
+        }else{
+            tv_res_p1.setTextColor(Color.parseColor("#D3D3D3"));
+            tv_res_p2.setTextColor(Color.parseColor("#D3D3D3"));
+            tv_res_p1.setText(p1+"");
+            tv_res_p2.setText(p2+"");
+        }
 
     }
 
@@ -104,17 +131,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 (buttonStates[2]==player && buttonStates[4]==player && buttonStates[6]==player)){
             showAlertDialog();
         }
+        if(buttonStates[0]!=0 && buttonStates[1]!=0 && buttonStates[2]!=0 && buttonStates[3]!=0 && buttonStates[4]!=0 &&
+                buttonStates[5]!=0 && buttonStates[6]!=0 && buttonStates[7]!=0 && buttonStates[8]!=0){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("No player has won 🙁")
+                    .setMessage("Want to play again?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            recreate();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
 
     }
 
     private void showAlertDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        int win;
+
         if(player == 1){
             win = 2;
+            p2++;
         }else{
             win = 1;
+            p1++;
         }
         builder.setTitle("Player : "+win+"  Win 🤩🎉")
                 .setMessage("Want to play again?")
@@ -132,7 +181,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
     }
 
     private void changeText(View view,int i) {
