@@ -1,6 +1,6 @@
 # TicTacToe-Android-App
 TicTacToe Game Android Application
 
-![1](https://user-images.githubusercontent.com/81251707/165870117-a86cb70c-2ac2-4e42-aefc-891aaeda8977.PNG)
-![2](https://user-images.githubusercontent.com/81251707/165870130-92148f7a-a745-4c4c-a1ed-12818bb8d896.PNG)
-![3](https://user-images.githubusercontent.com/81251707/165870138-822c6e98-1c02-4885-99a1-d536de7c3b96.PNG)
+![1](https://user-images.githubusercontent.com/81251707/165947465-6b0ccc6e-133e-446c-8609-b5b2d6328087.PNG)
+![2](https://user-images.githubusercontent.com/81251707/165947485-558250ac-3e52-43ba-80c2-ebf65945cf5d.PNG)
+![3](https://user-images.githubusercontent.com/81251707/165947498-7f558b07-4620-47b9-9b88-a37b3cbf3c9e.PNG)
