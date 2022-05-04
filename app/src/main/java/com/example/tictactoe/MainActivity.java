@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void checkWinner(int i,View v) {
 
+        int f=0;
         changeText(v,i);
         if(buttonStates[i] == 0){
             buttonStates[i] = player;
@@ -130,9 +131,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 (buttonStates[3]==player && buttonStates[4]==player && buttonStates[5]==player) ||
                 (buttonStates[2]==player && buttonStates[4]==player && buttonStates[6]==player)){
             showAlertDialog();
+            f=1;
         }
-        if(buttonStates[0]!=0 && buttonStates[1]!=0 && buttonStates[2]!=0 && buttonStates[3]!=0 && buttonStates[4]!=0 &&
-                buttonStates[5]!=0 && buttonStates[6]!=0 && buttonStates[7]!=0 && buttonStates[8]!=0){
+        if((buttonStates[0]!=0 && buttonStates[1]!=0 && buttonStates[2]!=0 && buttonStates[3]!=0 && buttonStates[4]!=0 &&
+                buttonStates[5]!=0 && buttonStates[6]!=0 && buttonStates[7]!=0 && buttonStates[8]!=0)&&f==0){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("No player has won 🙁")
                     .setMessage("Want to play again?")
